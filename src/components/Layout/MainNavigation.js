@@ -33,7 +33,7 @@ const MainNavigation = (props) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/ingredients" activeClassName={classes.active}>
+            <NavLink to="/ingredients/" activeClassName={classes.active}>
               By ingridient
             </NavLink>
           </li>

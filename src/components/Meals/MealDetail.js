@@ -37,7 +37,7 @@ const MealDetail = () => {
   return (
     <Fragment>
       <div>
-        <div>
+        <div className={classes.maxSize}>
           <h4 className={classes.mealName}>
             <span>{meal.strMeal}</span>
           </h4>
@@ -59,7 +59,7 @@ const MealDetail = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className={classes.maxSize}>
         <h4 className={classes.title}>
           <span>Instructions</span>
         </h4>

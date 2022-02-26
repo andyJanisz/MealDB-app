@@ -1,7 +1,7 @@
 .container {
     padding: 0.5rem;
     background-color: rgb(65, 141, 137);
-    width: 135px;
+    width: 130px;
     border: 0.15rem solid rgb(0, 0, 0);
     border-radius: 5px;
     margin: 0.75rem;
@@ -9,7 +9,7 @@
 }
 .imgIng {
     padding: 0.1rem;
-    width: 120px;
+    width: 100px;
     border-radius: 0.5rem;
 }
 

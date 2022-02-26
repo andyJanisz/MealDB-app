@@ -1,8 +1,12 @@
 import { ingLister, filterByIngredient } from "../MealDB/MealDB";
+import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import MealList from "../Meals/MealList";
 
 const ByIngridientPage = () => {
+  const history = useHistory();
+  const params = useParams();
+
   const [ingList, setIngList] = useState([
     { idIngredient: "1", strIngredient: "Chicken" },
   ]);
@@ -19,14 +23,19 @@ const ByIngridientPage = () => {
       console.log("fetching...");
       fetchIng();
     }
+    if (params.param) {
+      setIng(params.param);
+    }
     fetchByIng();
-  }, [ingredient]);
+  }, [ingredient, params]);
 
   const fetchIng = async () => {
     const data = await ingLister();
     setIngList(data);
   };
-
+  const changeURL = () => {
+    history.push("/ingredients/");
+  };
   return (
     <>
       <div> Select an ingredient: </div>
@@ -34,8 +43,14 @@ const ByIngridientPage = () => {
         <select
           id="category"
           value={ingredient}
-          onChange={(e) => setIng(e.target.value)}
-          onBlur={(e) => setIng(e.target.value)}
+          onChange={(e) => {
+            setIng(e.target.value);
+            changeURL();
+          }}
+          onBlur={(e) => {
+            setIng(e.target.value);
+            changeURL();
+          }}
         >
           <option />
           {ingList.map((ing) => (

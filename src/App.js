@@ -40,6 +40,9 @@ function App() {
           <Route path="/search/q=:param">
             <SearchPage />
           </Route>
+          <Route path="/ingredients/:param">
+            <ByIngridientPage />
+          </Route>
           <Route path="/ingredients/">
             <ByIngridientPage />
           </Route>
