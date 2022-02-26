@@ -1,0 +1,30 @@
+.container {
+    margin: 0.3rem;
+    text-align: center;
+    text-decoration-line: none;
+}
+.imgContainer {
+    padding: 0.25rem;
+    background-color: rgb(40, 122, 118);
+    height: 300px;
+    width: 180px;
+    border: 0.15rem solid rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.img {
+    padding: 0.1rem;
+    width: 160px;
+    border-radius: 0.5rem;
+}
+.mealName {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.lnk a {
+    text-decoration: none;
+    color: #88dfdf;
+    font-size:small;
+    
+  }
