@@ -2,4 +2,5 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
     max-width: 850px;
+    
 }

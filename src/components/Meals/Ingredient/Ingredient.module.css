@@ -1,11 +1,12 @@
 .container {
     padding: 0.5rem;
-    background-color: rgb(65, 141, 137);
+    background-color: rgb(125, 189, 186);
     width: 130px;
     border: 0.15rem solid rgb(0, 0, 0);
     border-radius: 5px;
     margin: 0.75rem;
     text-align: center;
+    box-shadow: 3px 3px 5px black;
 }
 .imgIng {
     padding: 0.1rem;
@@ -16,4 +17,12 @@
 .name {
     font-weight: bold;
     font-size: 1.2rem;
+    text-decoration: none;
+    
+}
+.name a{
+    color:  #2c5f5f;
+}
+.name a :hover {
+    color:  #a1cfcf;
 }

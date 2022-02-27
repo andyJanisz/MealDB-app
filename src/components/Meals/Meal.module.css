@@ -1,21 +1,32 @@
 .container {
+    width: 200px;
     margin: 0.3rem;
     text-align: center;
     text-decoration-line: none;
-}
-.imgContainer {
-    padding: 0.25rem;
-    background-color: rgb(40, 122, 118);
     height: 300px;
-    width: 180px;
-    border: 0.15rem solid rgb(0, 0, 0);
+    background-color: rgb(40, 122, 118);
     border-radius: 5px;
+    border: 0.15rem solid rgb(0, 0, 0);  
+    box-shadow: 2px 3px 5px black;
+}
+
+
+.imgContainer {
+    padding: 0.25rem;    
+    
+}
+.container :hover {
+    box-shadow: none;
 }
 
 .img {
     padding: 0.1rem;
-    width: 160px;
+    width: 180px;
     border-radius: 0.5rem;
+}
+
+.img :hover {
+    box-shadow: none;
 }
 .mealName {
     font-weight: bold;
@@ -26,5 +37,7 @@
     text-decoration: none;
     color: #88dfdf;
     font-size:small;
-    
   }
+.lnk :hover{
+    color: #ffffff;
+}
