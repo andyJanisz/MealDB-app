@@ -1,12 +1,12 @@
 .container {
+    width: 120px;
+    height: 220px;
     padding: 0.5rem;
-    background-color: rgb(125, 189, 186);
-    width: 130px;
-    border: 0.15rem solid rgb(0, 0, 0);
+    background-color: #9db9b9;
     border-radius: 5px;
     margin: 0.75rem;
     text-align: center;
-    box-shadow: 3px 3px 5px black;
+    box-shadow: 1px 1px 5px black;
 }
 .imgIng {
     padding: 0.1rem;
@@ -16,9 +16,8 @@
 
 .name {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-decoration: none;
-    
 }
 .name a{
     color:  #2c5f5f;

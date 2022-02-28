@@ -13,13 +13,14 @@ const MainNavigation = (props) => {
   return (
     <header className={classes.header}>
       <NavLink to="/home" activeClassName={classes.active}>
-        <div className={classes.logo}> MealDB Recepies </div>
+        <div className={classes.logo}> Home</div>
       </NavLink>
       <nav className={classes.nav}>
         <ul>
           <li>
             <form onSubmit={searchHandler}>
               <input
+                className={classes.input}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 type="text"
@@ -29,12 +30,12 @@ const MainNavigation = (props) => {
           </li>
           <li>
             <NavLink to="/categories" activeClassName={classes.active}>
-              By category
+              Category
             </NavLink>
           </li>
           <li>
             <NavLink to="/ingredients/" activeClassName={classes.active}>
-              By ingridient
+              Ingridient
             </NavLink>
           </li>
         </ul>

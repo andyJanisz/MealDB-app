@@ -1,6 +1,7 @@
 import { categoryList, filterByCategory } from "../MealDB/MealDB";
 import { useEffect, useState } from "react";
 import MealList from "../Meals/MealList";
+import classes from "./ByCategoryPage.module.css";
 
 const SortByCategory = () => {
   const [catList, setCatList] = useState([{ strCategory: "Beef" }]);
@@ -18,6 +19,9 @@ const SortByCategory = () => {
       fetchCategories();
     }
     fetchByCategory();
+    if (category === "") {
+      setCategory("Dessert");
+    }
   }, [category]);
 
   const fetchCategories = async () => {
@@ -27,8 +31,8 @@ const SortByCategory = () => {
 
   return (
     <>
-      <div> Select a category: </div>
-      <div>
+      <div className={classes.selText}> Select a category: </div>
+      <div className={classes.selector}>
         <select
           id="category"
           value={category}

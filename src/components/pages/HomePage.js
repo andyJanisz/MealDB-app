@@ -81,9 +81,12 @@ const DUMMY_MEALS = [
 
 const HomePage = () => {
   const [meals, setMeals] = useState([]);
+  const [fetchError, setfetchError] = useState();
 
   useEffect(() => {
-    fetchRandomMeals();
+    fetchRandomMeals().catch((error) => {
+      setfetchError(error.message);
+    });
   }, []);
 
   const fetchRandomMeals = async () => {
@@ -91,10 +94,26 @@ const HomePage = () => {
     setMeals(data);
   };
 
+  if (fetchError) {
+    return (
+      <div className={classes.errorMessage}>
+        <p> {fetchError}</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div className={classes.randomMeals}> Dummy Meals </div>
-      <MealList meals={DUMMY_MEALS} />
+      <div className={classes.description}>
+        <p>
+          This is simple react app that is using TheMealDB API:
+          https://www.themealdb.com/api.php Here you have random meals that are
+          fetched from API. You can also search for meal in serch bar, list them
+          by category or ingredient.
+        </p>
+      </div>
+      {/* <div className={classes.randomMeals}> Dummy Meals </div>
+      <MealList meals={DUMMY_MEALS} /> */}
       <div className={classes.randomMeals}> Random Meals </div>
       <MealList meals={meals} />
     </div>

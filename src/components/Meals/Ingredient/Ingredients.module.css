@@ -1,6 +1,10 @@
 .ingGrid {
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    max-width: 750px;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    max-width: 95%;
+    
 }
 

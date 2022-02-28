@@ -21,10 +21,13 @@ const mealDetails = async (id) => {
 
 const getMeals = async () => {
   let tmp_meals = [];
-  while (tmp_meals.length !== 12) {
+  while (tmp_meals.length !== 20) {
     let result = await fetch(`${tmdb}random.php`);
-    let data = await result.json();
+    if (!result.ok) {
+      throw new Error("Error while fetching random meals!");
+    }
 
+    let data = await result.json();
     let isEmpty = !!tmp_meals.find(
       (meal) => JSON.stringify(meal) === JSON.stringify(data.meals[0])
     );
@@ -42,22 +45,34 @@ const getIngredientImg = (ingredient) => {
 
 const ingLister = async () => {
   const result = await fetch(`${tmdb}list.php?i=list`);
+  if (!result.ok) {
+    throw new Error("Error fetching while creating ingridient list!");
+  }
   const data = await result.json();
   return data.meals;
 };
 
 const filterByIngredient = async (ingredientName) => {
   const result = await fetch(`${tmdb}filter.php?i=${ingredientName}`);
+  if (!result.ok) {
+    throw new Error("Error fetching while filtering by ingridient!");
+  }
   const data = await result.json();
   return data.meals;
 };
 const categoryList = async () => {
   const result = await fetch(`${tmdb}list.php?c=list`);
+  if (!result.ok) {
+    throw new Error("Error fetching while creating category list!");
+  }
   const data = await result.json();
   return data.meals;
 };
 const filterByCategory = async (categorytName) => {
   const result = await fetch(`${tmdb}filter.php?c=${categorytName}`);
+  if (!result.ok) {
+    throw new Error("Error fetching while filtering meals by category!");
+  }
   const data = await result.json();
   return data.meals;
 };
