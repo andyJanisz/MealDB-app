@@ -5,6 +5,7 @@ import HomePage from "./components/pages/HomePage";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 import MealDetail from "./components/Meals/MealDetail";
 import NotAvailable from "./components/pages/404";
+import MealPage from "./components/pages/MealPage";
 
 const SearchPage = React.lazy(() => import("./components/pages/SearchPage"));
 const ByIngridientPage = React.lazy(() =>
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route path="/ingredients/">
             <ByIngridientPage />
+          </Route>
+          <Route path="/MealPage/">
+            <MealPage />
           </Route>
           <Route path="*">
             <NotAvailable />

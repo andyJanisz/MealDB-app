@@ -20,22 +20,16 @@ const mealDetails = async (id) => {
 };
 
 const getMeals = async () => {
-  let tmp_meals = [];
-  while (tmp_meals.length !== 20) {
-    let result = await fetch(`${tmdb}random.php`);
-    if (!result.ok) {
-      throw new Error("Error while fetching random meals!");
-    }
-
-    let data = await result.json();
-    let isEmpty = !!tmp_meals.find(
-      (meal) => JSON.stringify(meal) === JSON.stringify(data.meals[0])
-    );
-    if (!isEmpty) {
-      tmp_meals.push(data.meals[0]);
-    }
+  const calbacks$ = Array.from({ length: 12 }, () =>
+    fetch(`${tmdb}random.php`)
+  );
+  try {
+    const data = await Promise.all(calbacks$);
+    const meals = await Promise.all(data.map(async (d) => d.json()));
+    return meals.map((meal) => meal.meals[0]);
+  } catch {
+    throw new Error("Error while fetching random meals!");
   }
-  return tmp_meals;
 };
 
 const getIngredientImg = (ingredient) => {

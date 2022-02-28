@@ -15,7 +15,6 @@ const SortByCategory = () => {
       return setMeals(data);
     };
     if (category === "") {
-      console.log("fetching...");
       fetchCategories();
     }
     fetchByCategory();
