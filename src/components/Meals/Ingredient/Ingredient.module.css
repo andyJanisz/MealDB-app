@@ -6,17 +6,24 @@
     border-radius: 5px;
     margin: 0.75rem;
     text-align: center;
+    align-items: center;
+    align-content: center;
+
     box-shadow: 1px 1px 5px black;
+    display: grid;
+    grid-template-rows: 40% 35% 20%;
 }
 .imgIng {
+
+    margin-left: auto;
+    margin-right: auto;
     padding: 0.1rem;
     width: 100px;
-    border-radius: 0.5rem;
 }
 
 .name {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-decoration: none;
 }
 .name a{

@@ -52,6 +52,9 @@ const MainNavigation = (props) => {
       </div>
       <div
         className={` ${classes.cover} ${isSidebar && classes.coverON}`}
+        onClick={() => {
+          openSidebar(isSidebar);
+        }}
       ></div>
 
       <div
@@ -60,7 +63,7 @@ const MainNavigation = (props) => {
           openSidebar(isSidebar);
         }}
       >
-        <i class="fa fa-bars fa-2x"></i>
+        <i className="fa fa-bars fa-2x"></i>
       </div>
       <nav className={classes.nav}>
         <ul>

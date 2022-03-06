@@ -22,7 +22,7 @@ const MealPage = () => {
   const [loaded, setLoaded] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [fetchError, setfetchError] = useState();
+  const [isError, setError] = useState(false);
   const history = useHistory();
   const params = useParams();
 
@@ -35,21 +35,24 @@ const MealPage = () => {
       const data = await categoryList();
       setCatList(data);
     };
-    fetchCategories();
-    fetchIng();
+    fetchCategories().catch((error) => {
+      setError(error.message);
+    });
+    fetchIng().catch((error) => {
+      setError(error.message);
+    });
 
     if (params.param) {
       setIng(params.param);
       setLoaded(true);
     } else {
       if (!loaded) {
-        console.log("random: " + loaded);
         fetchRandomMeals().catch((error) => {
-          setfetchError(error.message);
+          setError(error.message);
         });
       }
     }
-  }, [params]); // FETCHING SELECT LISTS
+  }, [params, loaded]); // FETCHING SELECT LISTS
 
   useEffect(() => {
     // FILTER BY CATEGORY --
@@ -57,7 +60,6 @@ const MealPage = () => {
     const fetchByCategory = async () => {
       setIsLoading(true);
       const data = await filterByCategory(category);
-      // if (category.length !== 1) { setIng(""); }
       if (category.length === 1) return;
       if (data === null) return;
       if (data !== undefined) setIsLoading(false);
@@ -66,7 +68,7 @@ const MealPage = () => {
     };
     if (category.length > 1) {
       fetchByCategory().catch((error) => {
-        setfetchError(error.message);
+        setError(error.message);
       });
       setIng("");
     }
@@ -87,7 +89,7 @@ const MealPage = () => {
     if (ingredient.length > 1) {
       setLoaded(true);
       fetchByIng().catch((error) => {
-        setfetchError(error.message);
+        setError(error.message);
       });
       setCategory("");
     }
@@ -115,10 +117,20 @@ const MealPage = () => {
  
  Mobile ver. 
 */
+
   if (params.param) {
     console.log("erase " + loaded);
     eraseURL();
   }
+
+  const errorMessage = (error) => {
+    return (
+      <div className={classes.errorMessage}>
+        <p> {error}</p>
+      </div>
+    );
+  };
+
   return (
     <div className={classes.mainCard}>
       <div className={classes.menuBar}>
@@ -157,7 +169,8 @@ const MealPage = () => {
         </div>
       </div>
       <div className={classes.mealCart}>
-        {!isLoading && <MealList meals={meals} />}
+        {!isLoading && !isError && <MealList meals={meals} />}
+        {isError && errorMessage(isError)}
         {isLoading && <LoadingSpiner />}
         {/* Add show error */}
       </div>
