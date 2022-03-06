@@ -5,16 +5,63 @@ import classes from "./MainNavigation.module.css";
 
 const MainNavigation = (props) => {
   const [search, setSearch] = useState("");
+  const [isSidebar, setIsSidebar] = useState(false);
   let history = useHistory();
+
   const searchHandler = () => {
     history.push(`/search/q=${search}`);
   };
 
+  const openSidebar = (isSidebar) => {
+    return setIsSidebar(!isSidebar);
+  };
+
   return (
     <header className={classes.header}>
-      <NavLink to="/home" activeClassName={classes.active}>
-        <div className={classes.logo}> Home</div>
-      </NavLink>
+      <div
+        className={` ${classes.sidePanel} ${
+          !isSidebar && classes.sidePanelOff
+        }`}
+      >
+        <div
+          className={classes.closebtn}
+          onClick={() => {
+            openSidebar(isSidebar);
+          }}
+        >
+          &times;
+        </div>
+
+        <ul className={classes.navList}>
+          <li>
+            <NavLink to={`/Home/`} activeClassName={classes.active}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`/MealPage/`} activeClassName={classes.active}>
+              Meal Page
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`/About/`} activeClassName={classes.active}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <div
+        className={` ${classes.cover} ${isSidebar && classes.coverON}`}
+      ></div>
+
+      <div
+        className={classes.logo}
+        onClick={() => {
+          openSidebar(isSidebar);
+        }}
+      >
+        <i class="fa fa-bars fa-2x"></i>
+      </div>
       <nav className={classes.nav}>
         <ul>
           <li>
@@ -27,16 +74,6 @@ const MainNavigation = (props) => {
                 placeholder="Search for a meal"
               />
             </form>
-          </li>
-          <li>
-            <NavLink to="/categories" activeClassName={classes.active}>
-              Category
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/ingredients/" activeClassName={classes.active}>
-              Ingridient
-            </NavLink>
           </li>
         </ul>
       </nav>

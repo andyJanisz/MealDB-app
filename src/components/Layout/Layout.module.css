@@ -1,3 +1,47 @@
+/*
+.sidePanel {
+  position: fixed;
+  background-color: black;
+  width: 100px;
+  height: 100%;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+ .sidePanel .closebtn {
+  position:absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.cover {
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  height: 100%;
+  width: 0;
+  left: 0;
+  transition: margin-left .5s;
+  transition: width .5s;
+}
+.coverON {
+  width: 100%;
+  left: 100px;
+  transition: margin-left .5s;
+  transition: width .5s;
+} */
+
+.testClick {
+  width: 40px;
+  display: flex;
+  cursor: pointer;
+  margin-left: 15rem;
+}
+
 .main {
   width: 100%;
+  transition: margin-left .5s;
 }
+
+

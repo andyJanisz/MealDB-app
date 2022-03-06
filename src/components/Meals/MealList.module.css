@@ -1,10 +1,12 @@
 .mealBox {
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
     display: grid;
     align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    max-width: 100%;
+    max-width: 98%;
+    /* max-height: 800px; */
     
 }

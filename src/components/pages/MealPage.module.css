@@ -1,0 +1,56 @@
+.mainCard {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.menuBar {
+ padding: 0.3rem;
+ display: flex;
+ align-items: center;
+}
+
+.mealCart {
+    
+    overflow: auto;
+    max-width: 100%;
+    max-height: 850px; 
+    background-color: rgb(189, 204, 201);
+    border-radius: 0.7rem;
+    border: 0.15rem solid rgb(0, 0, 0); 
+}
+
+.mealCart::-webkit-scrollbar {
+  display: block;
+  width: 10px;
+   }
+
+.mealCart::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+ .mealCart::-webkit-scrollbar-thumb {
+  background-color: rgb(117, 107, 107);
+  border-right: none;
+  border-left: none;
+  border-radius: 1rem;
+}
+
+.mealCart::-webkit-scrollbar-button {
+    height: 10px;
+  }
+
+ select {
+    margin-left: 1rem;
+    width: 90%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  }
+
+/* -- for smaller "carts" - smaller img and fonts 
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  } */

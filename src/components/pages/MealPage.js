@@ -1,27 +1,35 @@
 import { useState, useEffect } from "react";
-import { ingLister, categoryList, getMeals } from "../MealDB/MealDB";
+import { useParams, useHistory } from "react-router-dom";
+import LoadingSpiner from "../UI/LoadingSpinner";
+import {
+  ingLister,
+  categoryList,
+  getMeals,
+  filterByCategory,
+  filterByIngredient,
+} from "../MealDB/MealDB";
 import MealList from "../Meals/MealList";
-
-import classes from "./MealPage.modules.css";
+import classes from "./MealPage.module.css";
 
 const MealPage = () => {
   const [meals, setMeals] = useState([]);
+
   const [ingList, setIngList] = useState([]);
   const [catList, setCatList] = useState([{ strCategory: "Beef" }]);
+
   const [ingredient, setIng] = useState("");
   const [category, setCategory] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setfetchError] = useState();
+  const history = useHistory();
+  const params = useParams();
 
   useEffect(() => {
-    fetchRandomMeals().catch((error) => {
-      setfetchError(error.message);
-    });
     const fetchIng = async () => {
       const data = await ingLister();
       setIngList(data);
-      setIsLoading(true);
     };
     const fetchCategories = async () => {
       const data = await categoryList();
@@ -29,39 +37,99 @@ const MealPage = () => {
     };
     fetchCategories();
     fetchIng();
-  }, []);
 
+    if (params.param) {
+      setIng(params.param);
+      setLoaded(true);
+    } else {
+      if (!loaded) {
+        console.log("random: " + loaded);
+        fetchRandomMeals().catch((error) => {
+          setfetchError(error.message);
+        });
+      }
+    }
+  }, [params]); // FETCHING SELECT LISTS
+
+  useEffect(() => {
+    // FILTER BY CATEGORY --
+
+    const fetchByCategory = async () => {
+      setIsLoading(true);
+      const data = await filterByCategory(category);
+      // if (category.length !== 1) { setIng(""); }
+      if (category.length === 1) return;
+      if (data === null) return;
+      if (data !== undefined) setIsLoading(false);
+      setLoaded(true);
+      setMeals(data);
+    };
+    if (category.length > 1) {
+      fetchByCategory().catch((error) => {
+        setfetchError(error.message);
+      });
+      setIng("");
+    }
+  }, [category]);
+
+  useEffect(() => {
+    // FILTER BY INGR --
+    const fetchByIng = async () => {
+      setIsLoading(true);
+      const data = await filterByIngredient(ingredient);
+      console.log("ingr" + ingredient);
+      if (ingredient.length === 1) return;
+      if (data === null) return;
+      if (data !== undefined) setIsLoading(false);
+
+      setMeals(data);
+    };
+    if (ingredient.length > 1) {
+      setLoaded(true);
+      fetchByIng().catch((error) => {
+        setfetchError(error.message);
+      });
+      setCategory("");
+    }
+  }, [ingredient]);
+
+  // -------- FETCH RANDOM MEALS!
   const fetchRandomMeals = async () => {
+    console.log("randomize");
+    setIsLoading(true);
     const data = await getMeals();
+    if (data !== undefined) {
+      setIsLoading(false);
+    }
     setMeals(data);
   };
 
+  const eraseURL = () => {
+    history.push("/MealPage/");
+  };
   /*
-- select by category - pick value and filter in diff component and return meal {}. 
-- select by ingredient - ... 
-_selectMeal component ? -> takes in 'string',  exports meal obj {} from MealDB 
-
 /To Do : 
- Handle situation where Random is fetching to same "children"
- Error handling in Modal (from fetching etc)
- Sending data between components
+ Handle situation where Random is fetching to same "children" - no double meals
+
  CSS! Modify UI for better looks and UsExp. 
- Add "spinner" functionality
+ 
  Mobile ver. 
 */
-
+  if (params.param) {
+    console.log("erase " + loaded);
+    eraseURL();
+  }
   return (
-    <div>
-      <div>
+    <div className={classes.mainCard}>
+      <div className={classes.menuBar}>
         <div>
-          <button onClick={fetchRandomMeals}> Randomize</button>
+          <button onClick={fetchRandomMeals}> Random</button>
         </div>
         <div>
           <select
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            onBlur={(e) => setCategory(e.target.value)}
           >
             <option value="0">Select category</option>
             {catList.map((cat) => (
@@ -73,12 +141,9 @@ _selectMeal component ? -> takes in 'string',  exports meal obj {} from MealDB
         </div>
         <div className={classes.selector}>
           <select
-            id="category"
+            id="ingredient"
             value={ingredient}
             onChange={(e) => {
-              setIng(e.target.value);
-            }}
-            onBlur={(e) => {
               setIng(e.target.value);
             }}
           >
@@ -91,8 +156,10 @@ _selectMeal component ? -> takes in 'string',  exports meal obj {} from MealDB
           </select>
         </div>
       </div>
-      <div>
-        <MealList meals={meals} />
+      <div className={classes.mealCart}>
+        {!isLoading && <MealList meals={meals} />}
+        {isLoading && <LoadingSpiner />}
+        {/* Add show error */}
       </div>
     </div>
   );

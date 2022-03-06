@@ -11,7 +11,7 @@ const Ingredient = ({ ingredient }) => {
       />
       <p className={classes.name}>
         <NavLink
-          to={`/ingredients/${ingredient.name}`}
+          to={`/Ingredients/${ingredient.name}`}
           activeClassName={classes.active}
         >
           <span>{ingredient.name}</span>

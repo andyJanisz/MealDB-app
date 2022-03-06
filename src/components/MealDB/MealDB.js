@@ -47,6 +47,7 @@ const ingLister = async () => {
 };
 
 const filterByIngredient = async (ingredientName) => {
+  console.log(ingredientName);
   const result = await fetch(`${tmdb}filter.php?i=${ingredientName}`);
   if (!result.ok) {
     throw new Error("Error fetching while filtering by ingridient!");

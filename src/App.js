@@ -8,12 +8,6 @@ import NotAvailable from "./components/pages/404";
 import MealPage from "./components/pages/MealPage";
 
 const SearchPage = React.lazy(() => import("./components/pages/SearchPage"));
-const ByIngridientPage = React.lazy(() =>
-  import("./components/pages/ByIngridientPage")
-);
-const SortByCategory = React.lazy(() =>
-  import("./components/pages/ByCategoryPage")
-);
 
 function App() {
   return (
@@ -27,7 +21,7 @@ function App() {
       >
         <Switch>
           <Route path="/" exact>
-            <Redirect to="/home" />
+            <Redirect to="/MealPage/" />
           </Route>
           <Route path="/home" exact>
             <HomePage />
@@ -35,19 +29,16 @@ function App() {
           <Route path="/meal/:id">
             <MealDetail />
           </Route>
-          <Route path="/categories/">
-            <SortByCategory />
-          </Route>
           <Route path="/search/q=:param">
             <SearchPage />
           </Route>
           <Route path="/ingredients/:param">
-            <ByIngridientPage />
+            <MealPage />
           </Route>
-          <Route path="/ingredients/">
-            <ByIngridientPage />
+          <Route path="/MealPage/" exact>
+            <MealPage />
           </Route>
-          <Route path="/MealPage/">
+          <Route path="/MealPage/:param">
             <MealPage />
           </Route>
           <Route path="*">

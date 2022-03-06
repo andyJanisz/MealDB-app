@@ -1,5 +1,9 @@
 .spinner {
-  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  /* display: inline-block; */
   width: 80px;
   height: 80px;
 }
@@ -8,7 +12,8 @@
   display: block;
   width: 64px;
   height: 64px;
-  margin: 8px;
+  
+  /* margin: 10px; */
   border-radius: 50%;
   border: 6px solid teal;
   border-color: teal transparent teal transparent;

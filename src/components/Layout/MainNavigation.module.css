@@ -5,12 +5,74 @@ a {
   height: 3rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   background-color: #008080;
   color: black;
   width: 100%;
   margin-right: 10%;
 }
+
+/* SIDE PANEL MODE */
+
+.sidePanel {
+  z-index: 2;
+  position: absolute;
+  background-color: black;
+  left:0;
+  width: 140px;
+  height: 100%;
+  color: #f1f1f1;
+  transition: 0.7s;
+}
+
+ .sidePanel .closebtn {
+  position:absolute;
+  left: 0;
+  top: 0;
+  font-size: 2rem;
+  margin-left: 105px;
+  cursor: pointer;
+  transition: left 1s ;
+}
+
+.navList{
+  list-style: none;
+  padding-left: 5px;
+  padding-top: 2rem;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.6rem;
+  cursor: pointer;
+  text-decoration: none;
+  
+}
+.navList a {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+.navList a:hover,
+.navList a:active,
+.navList a.active {
+  color: #3db9b9;
+}
+
+.sidePanelOff {
+  left: -160px;
+ }
+
+.cover {
+  position: absolute;
+  background-color:transparent;
+  transition: left 0.5s;
+}
+
+.coverON {
+  z-index: 1;
+  background-color: rgba(0,0,0,0.6);
+  height: 100%;
+  width: 100%;
+  transition: 1s;
+  /* transition: background-color 0.5s; */
+}
+
 .nav {
   margin-right: 0;
 }
@@ -31,14 +93,17 @@ a {
 .nav a.active {
   color: #e6fcfc;
 }
+
 .logo {
+  margin-top: 0.2rem;
   margin-left: 0.5rem;
   text-decoration: none;
-  font-size: 1.75rem;
-  color: Black;
+  font-size: 1.2rem;
+  color: rgb(0, 0, 0);
 }
 .logo:hover {
   color: #e6fcfc;
+  cursor: pointer;
 }
 .input {
   width: 100%;
@@ -52,3 +117,5 @@ a {
   bottom: 0;
   height: 2rem;
 }
+
+
